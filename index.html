@@ -1,0 +1,290 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Search, Plane, MapPin, Calendar, Star, Menu, Globe2, Compass, Mail } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+// Landing page moderna para um site de viagem
+// • Tailwind para estilos
+// • framer-motion para animações sutis
+// • shadcn/ui para componentes básicos (Button, Card, Input)
+// Personalize textos, imagens, paleta, e links conforme sua marca
+
+const destinos = [
+  {
+    titulo: "Lençóis Maranhenses, Brasil",
+    descricao: "Dunas e lagoas cristalinas — melhor época: jun–set.",
+    imagem:
+      "https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1600&auto=format&fit=crop",
+    preco: "R$ 1.250",
+    avaliacao: 4.8,
+  },
+  {
+    titulo: "Chapada dos Veadeiros, GO",
+    descricao: "Cachoeiras, trilhas, céu estrelado e boa energia.",
+    imagem:
+      "https://images.unsplash.com/photo-1526481280698-8fcc13fd34b2?q=80&w=1600&auto=format&fit=crop",
+    preco: "R$ 980",
+    avaliacao: 4.7,
+  },
+  {
+    titulo: "Fernando de Noronha, PE",
+    descricao: "Mergulhos inesquecíveis e praias paradisíacas.",
+    imagem:
+      "https://images.unsplash.com/photo-1544986581-efac024faf62?q=80&w=1600&auto=format&fit=crop",
+    preco: "R$ 2.890",
+    avaliacao: 4.9,
+  },
+  {
+    titulo: "Gramado & Serra Gaúcha, RS",
+    descricao: "Gastronomia, clima europeu e natureza charmosa.",
+    imagem:
+      "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop",
+    preco: "R$ 790",
+    avaliacao: 4.6,
+  },
+];
+
+const beneficios = [
+  {
+    icon: Globe2,
+    titulo: "Destino certo",
+    desc: "Recomendações inteligentes a partir do seu estilo de viagem.",
+  },
+  {
+    icon: Compass,
+    titulo: "Roteiros prontos",
+    desc: "Sugestões diárias com o que ver, onde comer e como se deslocar.",
+  },
+  {
+    icon: Plane,
+    titulo: "Melhor preço",
+    desc: "Monitoramos tarifas para você viajar mais pagando menos.",
+  },
+];
+
+export default function ViagemLanding() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900">
+      {/* Navbar */}
+      <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/60 border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Plane className="h-6 w-6" />
+            <span className="font-bold text-lg">ViajArte</span>
+          </div>
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#destinos" className="hover:text-slate-700">Destinos</a>
+            <a href="#beneficios" className="hover:text-slate-700">Benefícios</a>
+            <a href="#depoimentos" className="hover:text-slate-700">Depoimentos</a>
+            <a href="#contato" className="hover:text-slate-700">Contato</a>
+          </nav>
+          <Button className="hidden md:inline-flex rounded-2xl">Entrar</Button>
+          <button className="md:hidden p-2 rounded-xl hover:bg-slate-100">
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative">
+        <div className="absolute inset-0 -z-10">
+          <img
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2400&auto=format&fit=crop"
+            alt="Praia paradisíaca ao pôr do sol"
+            className="h-[76vh] w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-white/70" />
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 h-[76vh] flex flex-col justify-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-6xl font-bold text-white drop-shadow-sm"
+          >
+            Descubra seu próximo destino inesquecível
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mt-3 text-white/90 text-lg md:text-xl max-w-2xl"
+          >
+            Planeje a viagem perfeita com buscas rápidas, roteiros inteligentes e ofertas exclusivas.
+          </motion.p>
+
+          {/* Barra de busca */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-6 bg-white/90 backdrop-blur rounded-2xl shadow-xl p-4"
+          >
+            <form className="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <div className="flex items-center gap-2 border rounded-xl px-3 py-2 bg-white">
+                <MapPin className="h-5 w-5" />
+                <Input className="border-0 focus-visible:ring-0" placeholder="Para onde?" />
+              </div>
+              <div className="flex items-center gap-2 border rounded-xl px-3 py-2 bg-white">
+                <Calendar className="h-5 w-5" />
+                <Input className="border-0 focus-visible:ring-0" type="text" placeholder="Datas" />
+              </div>
+              <div className="flex items-center gap-2 border rounded-xl px-3 py-2 bg-white">
+                <UsersIcon />
+                <Input className="border-0 focus-visible:ring-0" type="number" min={1} placeholder="Viajantes" />
+              </div>
+              <Button type="button" className="rounded-xl h-12 md:h-auto">
+                <Search className="mr-2 h-4 w-4" />Buscar
+              </Button>
+            </form>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Benefícios */}
+      <section id="beneficios" className="max-w-6xl mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-3 gap-6">
+          {beneficios.map((b, i) => (
+            <motion.div
+              key={b.titulo}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl shadow-sm p-6 border"
+            >
+              <b.icon className="h-7 w-7" />
+              <h3 className="mt-3 font-semibold text-lg">{b.titulo}</h3>
+              <p className="mt-1 text-slate-600 text-sm">{b.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Destinos em destaque */}
+      <section id="destinos" className="max-w-6xl mx-auto px-4 pb-6">
+        <div className="flex items-end justify-between gap-4 mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold">Destinos em destaque</h2>
+          <Button variant="outline" className="rounded-xl">Ver todos</Button>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {destinos.map((d, i) => (
+            <motion.div
+              key={d.titulo}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              viewport={{ once: true }}
+            >
+              <Card className="overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="relative h-44">
+                  <img src={d.imagem} alt={d.titulo} className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/0" />
+                  <div className="absolute bottom-2 left-2 text-white text-sm bg-black/30 backdrop-blur rounded-full px-2 py-1 flex items-center gap-1">
+                    <Star className="h-4 w-4" /> {d.avaliacao}
+                  </div>
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold leading-tight">{d.titulo}</h3>
+                  <p className="text-sm text-slate-600 mt-1 line-clamp-2">{d.descricao}</p>
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className="font-semibold">{d.preco}</span>
+                    <Button className="rounded-xl" variant="secondary">Explorar</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Depoimentos */}
+      <section id="depoimentos" className="max-w-6xl mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-3 gap-6">
+          {[1, 2, 3].map((n) => (
+            <Card key={n} className="rounded-2xl border bg-white">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={`https://i.pravatar.cc/80?img=${n + 10}`}
+                    alt="Avatar"
+                    className="h-10 w-10 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="font-semibold">Viajante {n}</p>
+                    <p className="text-xs text-slate-500">Avaliou 5/5</p>
+                  </div>
+                </div>
+                <p className="mt-3 text-sm text-slate-700">
+                  Experiência impecável! Roteiro prático, ótimas dicas e suporte rápido. Voltarei a usar na próxima viagem.
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section id="contato" className="max-w-6xl mx-auto px-4 pb-20">
+        <div className="bg-white border rounded-2xl p-8 md:p-10 shadow-sm">
+          <div className="md:flex items-center gap-8">
+            <div className="md:w-1/2">
+              <h3 className="text-2xl font-bold flex items-center gap-2"><Mail className="h-6 w-6"/> Receba ofertas e novidades</h3>
+              <p className="text-slate-600 mt-1">Assine a newsletter para não perder promoções e roteiros exclusivos.</p>
+            </div>
+            <form className="mt-4 md:mt-0 md:w-1/2 flex gap-2">
+              <Input type="email" placeholder="Seu e-mail" className="rounded-xl" />
+              <Button type="button" className="rounded-xl">Quero receber</Button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Rodapé */}
+      <footer className="bg-white border-t">
+        <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8 text-sm">
+          <div>
+            <div className="flex items-center gap-2 font-semibold"><Plane className="h-5 w-5"/> ViajArte</div>
+            <p className="mt-2 text-slate-600">Inspirando pessoas a conhecer o mundo, um destino por vez.</p>
+          </div>
+          <div>
+            <p className="font-semibold">Empresa</p>
+            <ul className="mt-2 space-y-1 text-slate-600">
+              <li><a href="#">Sobre</a></li>
+              <li><a href="#">Carreiras</a></li>
+              <li><a href="#">Imprensa</a></li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-semibold">Ajuda</p>
+            <ul className="mt-2 space-y-1 text-slate-600">
+              <li><a href="#">Central de suporte</a></li>
+              <li><a href="#">Políticas</a></li>
+              <li><a href="#">Contato</a></li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-semibold">Siga</p>
+            <ul className="mt-2 space-y-1 text-slate-600">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">YouTube</a></li>
+              <li><a href="#">TikTok</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t text-xs text-slate-500 py-4 text-center">© {new Date().getFullYear()} ViajArte — Todos os direitos reservados.</div>
+      </footer>
+    </div>
+  );
+}
+
+function UsersIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+      <path d="M10 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm12 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM0 20a6 6 0 1 1 12 0v1H0v-1Zm13.255-.777A6.982 6.982 0 0 1 17 18c1.61 0 3.09.533 4.255 1.223.47.277.745.79.745 1.341V21h-8v-.436c0-.55.275-1.064.755-1.341Z" />
+    </svg>
+  );
+}
